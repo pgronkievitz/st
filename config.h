@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
+static char *font = "Hurmit Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -93,39 +93,53 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
+float alpha = 0.85;
+float alphaUnfocussed = 0.65;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-  "#2d2d2d", /* base00 */
-  "#f2777a", /* base08 */
-  "#99cc99", /* base0B */
-  "#ffcc66", /* base0A */
-  "#6699cc", /* base0D */
-  "#cc99cc", /* base0E */
-  "#66cccc", /* base0C */
-  "#d3d0c8", /* base05 */
-  "#747369", /* base03 */
-  "#f99157", /* base09 */
-  "#393939", /* base01 */
-  "#515151", /* base02 */
-  "#a09f93", /* base04 */
-  "#e8e6df", /* base06 */
-  "#d27b53", /* base0F */
-  "#f2f0ec", /* base07 */
+
+  /* 8 normal colors */
+  [0] = "#1e2127", /* black   */
+  [1] = "#e06c75", /* red     */
+  [2] = "#98c379", /* green   */
+  [3] = "#d19a66", /* yellow  */
+  [4] = "#61afef", /* blue    */
+  [5] = "#c678dd", /* magenta */
+  [6] = "#56b6c2", /* cyan    */
+  [7] = "#abb2bf", /* white   */
+
+  /* 8 bright colors */
+  [8]  = "#5c6370", /* black   */
+  [9]  = "#e06c75", /* red     */
+  [10] = "#98c379", /* green   */
+  [11] = "#d19a66", /* yellow  */
+  [12] = "#61afef", /* blue    */
+  [13] = "#c678dd", /* magenta */
+  [14] = "#56b6c2", /* cyan    */
+  [15] = "#ffffff", /* white   */
+
+  /* special colors */
+  [256] = "#1e2127", /* background */
+  [257] = "#abb2bf", /* foreground */
 };
 
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 13;
-static unsigned int defaultrcs = 0;
+/*
+ * Default colors (colorname index)
+ * foreground, background, cursor
+ */
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+unsigned int defaultcs = 257;
 
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this
  * will reverse too. Another logic would only make the simple feature too
  * complex.
  */
-unsigned int defaultitalic = 7;
-unsigned int defaultunderline = 7;
+static unsigned int defaultitalic = 7;
+static unsigned int defaultunderline = 7;
+static unsigned int defaultrcs = 0;
 /*
  * Default shape of cursor
  * 2: Block ("█")
@@ -195,7 +209,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_k,           kscrollup,      {.i = +1} },
 	{ MODKEY,               XK_j,           kscrolldown,    {.i = +1} },
         { TERMMOD,              XK_Escape,      keyboard_select,{   0   } },
-	{ MODKEY,               XK_c,           copyurl,        {.i =  0} },
+	{ MODKEY|ControlMask,               XK_c,           copyurl,        {.i =  0} },
 };
 
 /*
