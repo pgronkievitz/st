@@ -75,7 +75,7 @@ const int boxdraw_braille = 0;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-256color";
+char *termname = "st";
 
 /*
  * spaces per tab
@@ -100,28 +100,28 @@ float alphaUnfocussed = 1.0;
 static const char *colorname[] = {
 
   /* 8 normal colors */
-  [0] = "#1e2127", /* black   */
-  [1] = "#e06c75", /* red     */
-  [2] = "#98c379", /* green   */
-  [3] = "#d19a66", /* yellow  */
-  [4] = "#61afef", /* blue    */
-  [5] = "#c678dd", /* magenta */
-  [6] = "#56b6c2", /* cyan    */
-  [7] = "#abb2bf", /* white   */
+  [0] = "#080200", /* black   */
+  [1] = "#ff6188", /* red     */
+  [2] = "#a9dc76", /* green   */
+  [3] = "#ffd866", /* yellow  */
+  [4] = "#288ad6", /* blue    */
+  [5] = "#fc9867", /* magenta */
+  [6] = "#78dce8", /* cyan    */
+  [7] = "#e7e7e7", /* white   */
 
   /* 8 bright colors */
-  [8]  = "#5c6370", /* black   */
-  [9]  = "#e06c75", /* red     */
-  [10] = "#98c379", /* green   */
-  [11] = "#d19a66", /* yellow  */
-  [12] = "#61afef", /* blue    */
-  [13] = "#c678dd", /* magenta */
-  [14] = "#56b6c2", /* cyan    */
+  [8]  = "#6f6b68", /* black   */
+  [9]  = "#de6c88", /* red     */
+  [10] = "#a1c57d", /* green   */
+  [11] = "#cab168", /* yellow  */
+  [12] = "#278ad6", /* blue    */
+  [13] = "#d89776", /* magenta */
+  [14] = "#78bdc6", /* cyan    */
   [15] = "#ffffff", /* white   */
 
   /* special colors */
-  [256] = "#1e2127", /* background */
-  [257] = "#abb2bf", /* foreground */
+  [256] = "#2c292d", /* background */
+  [257] = "#ffffff", /* foreground */
 };
 
 /*
@@ -130,7 +130,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 257;
 unsigned int defaultbg = 256;
-unsigned int defaultcs = 257;
+static unsigned int defaultcs = 257;
 
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this
